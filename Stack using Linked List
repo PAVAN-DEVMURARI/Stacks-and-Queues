@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int d) {
+        data = d;
+        next = NULL;
+    }
+};
+
+class Stack{
+    public:
+    Node* top;
+    int count;
+    
+    Stack()
+    {
+        top = nullptr;
+        count = 0;
+    }
+    
+    void push(int x)
+    {
+        Node* temp = new Node(x);
+        temp->next = top;
+        top = temp;
+        count = count+1;
+    }
+    
+    void pop()
+    {
+        Node* temp = top;
+        top = top->next;
+        delete temp;
+        count--;
+    }
+    
+    int size()
+    {
+        return count;       
+    }
+    
+    int peek()
+    {
+        return top->data;
+    }
+    
+};
+
+int main() {
+    Stack s;
+
+    cout << "Pushing 10" << endl;
+    s.push(10);
+    cout << "Pushing 20" << endl;
+    s.push(20);
+    cout << "Pushing 30" << endl;
+    s.push(30);
+
+    cout << "Top element: " << s.peek() << endl;    
+    cout << "Stack size: " << s.size() << endl;   
+
+    s.pop(); 
+    cout << "Top after pop: " << s.peek() << endl;   
+    cout << "Size after pop: " << s.size() << endl; 
+
+    s.pop();
+    s.pop(); 
+    s.pop(); 
+
+
+    return 0;
+}
+
