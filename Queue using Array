@@ -1,0 +1,86 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Queue{
+    
+    public:
+    int n=10 ;
+    int arr[10] , start = -1 , end = -1 , curr_size=0;
+    
+    void push(int x)
+    {
+        if (curr_size==n)
+        {
+            cout << "The Queue is full" << endl;
+            return;
+        }
+        
+        if (curr_size==0)
+        {
+            start = 0;
+            end = 0;
+        }
+        else
+        {
+            end = (end+1)%n;
+        }
+        
+        arr[end] = x;
+        curr_size++;
+        
+    }
+    
+    int pop()
+    {
+        if (curr_size==0)
+        {
+            cout << "The Queue is empty" << endl;
+            return -1;
+        }
+        
+        
+        int el = arr[start];
+        if (curr_size == 1)
+        {
+            start = end = -1;
+        }
+        
+        
+        start = (start+1)%n;
+        
+        curr_size--;
+        return el;
+    }
+    
+    int top()
+    {
+        if (curr_size==0)
+        {
+            
+        cout << "The Queue is empty" << endl;
+        return -1;
+        }
+        
+        return arr[start];
+    }
+    
+    int size()
+    {
+        return curr_size;
+    }
+    
+};
+
+int main() {
+	// your code goes here
+	Queue obj1;
+	obj1.push(1);;
+	obj1.push(2);;
+	obj1.push(3);;
+	obj1.push(4);;
+	
+	cout << obj1.top() << endl;
+	cout << obj1.size() << endl;
+
+
+}
