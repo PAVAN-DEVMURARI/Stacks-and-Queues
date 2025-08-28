@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int d) {
+        data = d;
+        next = nullptr;
+    }
+};
+
+class Queue {
+    int count;
+    Node* start;
+    Node* end;
+
+public:
+    Queue() {
+        count = 0;
+        start = nullptr;
+        end = nullptr;
+    }
+
+    void push(int x) {
+        Node* temp = new Node(x);
+        if (start == nullptr) {
+            start = end = temp;
+        } else {
+            end->next = temp;
+            end = temp;
+        }
+        count++;
+    }
+
+    void pop() {
+        if (start == nullptr) {
+            cout << "Nothing to pop" << endl;
+            return;
+        }
+
+        Node* temp = start;
+        start = start->next;
+
+        if (start == nullptr) {
+            end = nullptr;
+        }
+
+        delete temp;
+        count--;
+    }
+
+    int size() {
+        return count;
+    }
+
+    int peek() {
+        if (start == nullptr) {
+            cout << "Nothing is there" << endl;
+            return -1;
+        }
+        return start->data;
+    }
+
+    bool isEmpty() {
+        return start == nullptr;
+    }
+};
+
+int main() {
+    Queue q;
+
+    cout << "Pushing 10" << endl;
+    q.push(10);
+    cout << "Pushing 20" << endl;
+    q.push(20);
+    cout << "Pushing 30" << endl;
+    q.push(30);
+
+    cout << "Top element: " << q.peek() << endl;     
+    cout << "Queue size: " << q.size() << endl;      
+
+    q.pop(); 
+    cout << "Top after pop: " << q.peek() << endl;   
+    cout << "Size after pop: " << q.size() << endl;  
+
+    q.pop(); 
+    q.pop(); 
+    q.pop(); 
+}
+
