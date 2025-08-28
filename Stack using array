@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Stack {
+public:
+    int top = -1, arr[10];
+
+    void push(int n) 
+    {
+        if (top >= 9) 
+        {
+            cout << "The Stack is full" << endl;
+            return;
+        }
+        top++;
+        arr[top] = n;
+    }
+
+    int peek() {
+        if (top == -1) 
+        {
+            cout << "The Stack is empty" << endl;
+            return -1;
+        }
+        return arr[top];
+    }
+
+    void pop() {
+        if (top == -1) 
+        {
+            cout << "The Stack is empty" << endl;
+            return;
+        }
+        top--;
+    }
+
+    int size() {
+        return top + 1;
+    }
+};
+
+int main() {
+    Stack obj;
+
+    obj.push(10);
+    obj.push(9);
+    obj.push(8);
+
+    cout << "Top element: " << obj.peek() << endl;
+    cout << "Stack size: " << obj.size() << endl;
+
+    obj.pop();
+    cout << "Top element after pop: " << obj.peek() << endl;
+    cout << "Stack size: " << obj.size() << endl;
+    
+
+    return 0;
+}
