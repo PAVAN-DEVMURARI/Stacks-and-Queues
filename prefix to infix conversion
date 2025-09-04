@@ -1,0 +1,31 @@
+// User function Template for C++
+
+class Solution {
+  public:
+    string preToInfix(string pre_exp) {
+        // Write your code here
+        int n = pre_exp.length();
+        int i = n-1;
+        stack<string> st;
+        while (i>=0)
+        {
+            char ch = pre_exp[i];
+            if (isalnum(ch)) 
+            {
+                st.push(string(1, ch));
+            }
+            else 
+            {
+                string t1 = st.top();
+                st.pop();
+                string t2 = st.top();
+                st.pop();
+                string ans = '(' + t1 + pre_exp[i] + t2 + ')';
+                st.push(ans);
+             }
+             i--;
+        }
+        string ans = st.top();
+        return ans;
+    }
+};
