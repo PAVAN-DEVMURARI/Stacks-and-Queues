@@ -1,0 +1,32 @@
+// User function Template for C++
+
+class Solution {
+  public:
+    string postToPre(string post_exp) {
+        // Write your code here
+        int n = post_exp.length();
+        int i = 0;
+        stack<string> st;
+        while (i<n)
+        {
+            char ch = post_exp[i];
+            if (isalnum(ch)) 
+            {
+                st.push(string(1, ch));
+            }
+            else
+            {
+                string top1 = st.top();
+                st.pop();
+                string top2 = st.top();
+                st.pop();
+                string ans =  post_exp[i] + top2 + top1;
+                st.push(ans);
+            }
+            i++;
+        }
+        string ans = st.top();
+        return ans;
+        
+    }
+};
